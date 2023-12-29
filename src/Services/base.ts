@@ -14,7 +14,7 @@ const baseQueryWithInterceptor = async (
   extraOptions: {}
 ) => {
   const result = await baseQuery(args, api, extraOptions);
-  if (result.error && result.error.status === 401) {
+  if (result.error && result.error.status === 404) {
     // here you can deal with 401 error
   }
   return result;
