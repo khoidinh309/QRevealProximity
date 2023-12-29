@@ -5,10 +5,20 @@ import { NavigationContainer } from "@react-navigation/native";
 import { MainNavigator } from "./Main";
 import { WelcomeContainer } from "@/Screens/Welcome";
 import { RootScreens } from "@/Screens";
+import { Onboarding1Container } from "@/Screens/Onboarding1";
+import { Onboarding2Container } from "@/Screens/Onboarding2";
+import { Onboarding3Container } from "@/Screens/Onboarding3";
+import { LoginContainer } from "@/Screens/Login";
+import { SignUpContainer } from "@/Screens/SignUp";
 
 export type RootStackParamList = {
   [RootScreens.MAIN]: undefined;
   [RootScreens.WELCOME]: undefined;
+  [RootScreens.ONBOARD1]: undefined;
+  [RootScreens.ONBOARD2]: undefined;
+  [RootScreens.ONBOARD3]: undefined;
+  [RootScreens.LOGIN]: undefined;
+  [RootScreens.SIGNUP]: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -19,7 +29,7 @@ const ApplicationNavigator = () => {
     <NavigationContainer>
       <StatusBar />
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        <RootStack.Screen
+        {/* <RootStack.Screen
           name={RootScreens.WELCOME}
           component={WelcomeContainer}
         />
@@ -27,6 +37,31 @@ const ApplicationNavigator = () => {
           name={RootScreens.MAIN}
           component={MainNavigator}
           options={{}}
+        />  */}
+         <RootStack.Screen 
+          name={RootScreens.ONBOARD1}
+          component={Onboarding1Container}
+          options={{ headerShown: false }}
+        />
+        <RootStack.Screen
+          name={RootScreens.ONBOARD2}
+          component={Onboarding2Container}
+          options={{ headerShown: false }}
+        />
+        <RootStack.Screen
+          name={RootScreens.ONBOARD3}
+          component={Onboarding3Container}
+          options={{ headerShown: false }}
+        />
+        <RootStack.Screen
+          name={RootScreens.LOGIN}
+          component={LoginContainer}
+          options={{ headerShown: false }}
+        />
+        <RootStack.Screen
+          name={RootScreens.SIGNUP}
+          component={SignUpContainer}
+          options={{ headerShown: false }}
         />
       </RootStack.Navigator>
     </NavigationContainer>
