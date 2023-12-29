@@ -7,3 +7,10 @@ export enum RootScreens {
   LOGIN = "Login",
   SIGNUP = "Signup",
 }
+
+export enum HomeScreens {
+  HOME = 'Home',
+  SCANNER = 'Scanner',
+  LOCATION_DETAILS = 'LOCATION_DETAILS',
+  SCANNER_CAMERA = 'Scanner-camera'
+}
