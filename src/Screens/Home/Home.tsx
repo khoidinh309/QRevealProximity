@@ -1,16 +1,14 @@
-import { i18n, LocalizationKey } from "@/Localization";
 import React, { useState } from "react";
 import { View, Text, StyleSheet, Dimensions, Image, Pressable } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { useFonts } from 'expo-font';
 import { Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-fonts/poppins';
-import { StatusBar } from "expo-status-bar";
-import { HStack, Spinner, Heading, Center } from "native-base";
 import { User } from "@/Services";
 import qrCodeHeader from "../../../assets/qr_code_header.svg"
 import QrIcon from '../../../assets/qr_icon.svg'
 import { useNavigation } from "@react-navigation/native";
 import { HomeScreens } from "..";
+import { useSelector } from "react-redux";
 
 export interface IHomeProps {
   data: User | undefined;
@@ -21,6 +19,7 @@ export const Home = () => {
   const [windowWidth, setWindowWidth] = useState(Dimensions.get('window').width);
   const [windowHeight, setWindowHeight] = useState(Dimensions.get('window').height);
   const navigation = useNavigation();
+  const userSurname = useSelector((state: any) => state.user.surname);
 
   const [fontsLoaded, fontError] = useFonts({
     Poppins_400Regular, Poppins_600SemiBold
@@ -31,7 +30,7 @@ export const Home = () => {
   }
 
   const handlePress = () => {
-    navigation.navigate(HomeScreens.SCANNER_CAMERA);
+    navigation.navigate(HomeScreens.SCANNER_CAMERA as never);
   }
 
   return (
@@ -81,7 +80,7 @@ export const Home = () => {
         </View>
         <View style={{marginLeft: 10, display: 'flex',justifyContent: 'center'}}>
           <Text style={{fontSize: 20, fontFamily: 'Poppins_600SemiBold', padding: 0, margin: 0}}>Welcome</Text>
-          <Text style={{fontSize: 16, fontFamily: 'Poppins_400Regular', padding: 0, margin: 0}}>Khoi Dinh!!</Text>
+          <Text style={{fontSize: 16, fontFamily: 'Poppins_400Regular', padding: 0, margin: 0}}>{userSurname}</Text>
         </View>
       </View>
       <View style={{marginTop: 20, height: windowHeight*0.3, 

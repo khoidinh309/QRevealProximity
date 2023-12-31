@@ -1,12 +1,16 @@
-import * as React from "react";
-import { Text, StyleSheet, View, Pressable, Image, TextInput } from "react-native";
+import { useState } from "react";
+import { Text, StyleSheet, View, Pressable, Image, TextInput, Dimensions } from "react-native";
 import { RootScreens } from "..";
 import { useFonts } from 'expo-font'; 
 import { FontFamily, Border, FontSize, Color } from "../GlobalStyles";
 
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
+
 const Login = (props: {
   onNavigate: (string: RootScreens) => void;
 }) => {
+
   const [fontsLoaded] = useFonts({
   'PoppinsBold': require('@/Assets/font/poppins/Poppins-Bold.ttf'),
   'PoppinsReg': require('@/Assets/font/poppins/Poppins-Regular.ttf'),
@@ -15,6 +19,8 @@ const Login = (props: {
 if (!fontsLoaded) {
   return null;
 }
+
+
   return (
     <View style={[styles.login, styles.loginShadowBox]}>
       <Text style={[styles.login1, styles.loginTypo]}>Login</Text>
@@ -168,7 +174,7 @@ const styles = StyleSheet.create({
   },
   login1: {
     // marginLeft: -138,
-    top: 175,
+    top: windowHeight * 0.2,
     fontSize: 40,
     color: "#000",
     textAlign: "center",
@@ -186,7 +192,7 @@ const styles = StyleSheet.create({
   },
   orConnectWithWrapper: {
     // marginLeft: -60,
-    top: 605,
+    top: windowHeight * 0.67,
     width: '100%',
     height: 23,
     // left: "50%",

@@ -6,6 +6,7 @@ export enum RootScreens {
   ONBOARD3 = "Onboarding3",
   LOGIN = "Login",
   SIGNUP = "Signup",
+  AuthNavigator = "AuthNavigator",
 }
 
 export enum HomeScreens {

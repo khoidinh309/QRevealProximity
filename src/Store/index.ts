@@ -12,12 +12,15 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import { homeReducers, themeReducers } from "./reducers";
+import { homeReducers, themeReducers,  userReducer, authReducer, locationReducer} from "./reducers";
 
 const reducers = combineReducers({
   api: API.reducer,
   theme: themeReducers,
   home: homeReducers,
+  user: userReducer,
+  auth: authReducer,
+  location: locationReducer
 });
 
 const persistConfig = {
@@ -32,9 +35,7 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => {
     const middlewares = getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
     }).concat(API.middleware);
 
     // if (__DEV__ && !process.env.JEST_WORKER_ID) {

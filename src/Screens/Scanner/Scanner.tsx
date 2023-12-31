@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { SvgXml  } from "react-native-svg";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { Button } from "react-native";
 import scannerFormFrame from '../../../assets/scanner-front-frame.svg';
 import { useNavigateToDetail } from "./utils/NavigationFunctions";
 
@@ -17,10 +16,14 @@ export const Scanner = () => {
 
   const askForCameraPermission = () => {
     (async () => {
-      const {status} = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission({firstTime: true, hasPermission: status == 'granted'});
-    })()
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission({firstTime: true, hasPermission: status === 'granted'});
+    })();
   }
+
+  useEffect(() => {
+    askForCameraPermission();
+  }, []);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -41,19 +44,19 @@ export const Scanner = () => {
     navigateToDetail(data);
   }
 
-  if(hasPermission.firstTime === false) {
-    return (
-      <View style={styles.container}>
-        <Text>Requesting for camera permission</Text>
-      </View>
-    )
-  }
+  // if(hasPermission.firstTime === false) {
+  //   return (
+  //     <View style={styles.container}>
+  //       <Text>Requesting for camera permission</Text>
+  //     </View>
+  //   )
+  // }
 
   if(hasPermission.hasPermission === false) {
     return (
       <View style={styles.container}>
-        <Text>No access to camera</Text>
-        <Button title="Allow Camera" onPress={() => askForCameraPermission()} />
+        <Text style={{ margin: 10 }}>No access to camera</Text>
+        <Button title={"Allow Camera"} onPress={askForCameraPermission} />
       </View>
     )
   }

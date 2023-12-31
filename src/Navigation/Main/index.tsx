@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useDispatch, useSelector } from "react-redux";
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 import { HomeContainer } from "@/Screens/Home";
 import { ScannerContainer } from "@/Screens/Scanner";
 import { HistoryScreens, HomeScreens } from "@/Screens";
 import { LocationDetailsContainer } from "@/Screens/LocationDetails";
 import HistoryContainer from "@/Screens/History/HistoryContainer";
+import { fetchUserProfile } from "@/Store/reducers";
 
 export type ScannerStackParaList = {
   [HomeScreens.SCANNER_CAMERA]: undefined,
