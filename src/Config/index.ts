@@ -1,3 +1,3 @@
 export const Config = {
-  API_URL: "http://192.168.137.1:4200",
+  API_URL: "https://jsonplaceholder.typicode.com/",
 };

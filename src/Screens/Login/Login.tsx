@@ -60,7 +60,7 @@ if (!fontsLoaded) {
 
       <Pressable
         style={[styles.rectangleParent, styles.frameChildLayout]}
-        onPress={() => {}}
+        onPress={() => props.onNavigate(RootScreens.MAIN)}
       >
         <View style={[styles.frameChild, styles.frameChildLayout]} />
         <Text style={[styles.login2, styles.login2Typo]}>Login</Text>
