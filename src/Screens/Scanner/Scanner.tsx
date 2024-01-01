@@ -41,6 +41,7 @@ export const Scanner = () => {
   const handleBarCodeScanned = ({type, data}: {type: Int16Array, data: string}) => {
     setScanned(false),
     setData(data);
+    console.log(data);
     navigateToDetail(data);
   }
 

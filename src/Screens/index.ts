@@ -19,4 +19,5 @@ export enum HomeScreens {
 
 export enum HistoryScreens {
   HISTORY = 'History',
+  HISTORY_PAGE = 'History_Page',
 }
