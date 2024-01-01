@@ -57,10 +57,6 @@ const Login = ({ onNavigate }) => {
       </View>
     )
   }
-  else if(authStatus === RequestStatus.COMPLETE) {
-    console.log(authError)
-    return <View><Text>OK</Text></View>
-  }
   
   return (
     <View style={[styles.login, styles.loginShadowBox]}>

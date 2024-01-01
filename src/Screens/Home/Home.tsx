@@ -19,7 +19,7 @@ export const Home = () => {
   const [windowWidth, setWindowWidth] = useState(Dimensions.get('window').width);
   const [windowHeight, setWindowHeight] = useState(Dimensions.get('window').height);
   const navigation = useNavigation();
-  const userSurname = useSelector((state: any) => state.user.surname);
+  const userSurname = useSelector((state: any) => state.user.profile.surname);
 
   const [fontsLoaded, fontError] = useFonts({
     Poppins_400Regular, Poppins_600SemiBold

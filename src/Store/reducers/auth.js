@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { login } from '@/APIs/AccountApi';
+import { login, Logout, Register } from '@/APIs/AccountApi';
 import RequestStatus from './requestStatus';
 import api from '../../APIs/API';
 
@@ -17,6 +17,30 @@ export const loginAsync = createAsyncThunk(
   }
 );
 
+export const logoutAsync = createAsyncThunk(
+  'auth/logout',
+  async (_, {getState}) => {
+    try {
+      getState().auth.accessToken = null;
+      return response;
+    } catch (error) {
+      console.log(error)
+    }
+  }
+);
+
+export const registerAsync = createAsyncThunk(
+  'auth/register',
+  async (data) => {
+    try {
+      const response = await Register(data);
+      return response.data.userName == data.userName;
+    } catch (error) {
+      console.log(error)
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -24,9 +48,13 @@ const authSlice = createSlice({
     cookie: null,
     isLoginIn: false,
     status: RequestStatus.IDLE,
+    isRegister: false,
     error: null
   },
   reducers: {
+    setStatus: (state, action) => {
+      state.status = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -39,11 +67,20 @@ const authSlice = createSlice({
       })
       .addCase(loginAsync.rejected, (state, action) => {
         state.status = RequestStatus.ERROR;
-        // console.log(action.payload)
-      });
+      })
+      .addCase(registerAsync.pending, (state) => {
+        state.status = RequestStatus.LOADING;
+      })
+      .addCase(registerAsync.fulfilled, (state, action) => {
+        state.status = RequestStatus.COMPLETE;
+        state.isRegister = action.payload;
+      })
+      .addCase(registerAsync.rejected, (state, action) => {
+        state.status = RequestStatus.ERROR;
+      })
   }
 });
 
-export const { setToken, setCookie } = authSlice.actions;
+export const { setStatus } = authSlice.actions;
 
 export const authReducer =  authSlice.reducer;

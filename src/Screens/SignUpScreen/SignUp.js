@@ -1,13 +1,23 @@
 import { useState } from "react";
 import { Text, StyleSheet, View, Pressable, Image, TextInput, Dimensions } from "react-native";
-import { RootScreens } from "..";
+import { useDispatch, useSelector } from "react-redux";
+import { HomeScreens, RootScreens } from "..";
 import { useFonts } from 'expo-font'; 
+import { registerAsync } from "@/Store/reducers";
 import { FontFamily, Border, FontSize, Color } from "../GlobalStyles";
+import Spinner from "@/Components/spinner";
+import RequestStatus from "@/Store/reducers/requestStatus";
+import ErrorComponent from "@/Components/error";
+import { setStatus } from "@/Store/reducers";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const SignUp = ({ onNavigate }) => {
+  const dispatch = useDispatch();
+  const status = useSelector((state) => state.auth.status);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const [fontsLoaded] = useFonts({
     'PoppinsBold': require('@/Assets/font/poppins/Poppins-Bold.ttf'),
@@ -18,6 +28,23 @@ const SignUp = ({ onNavigate }) => {
   if (!fontsLoaded) {
     return null;
   }
+
+  if(status === RequestStatus.LOADING) return (<Spinner />);
+  else if(status === RequestStatus.ERROR) return (<ErrorComponent message={"Something went wrong"} />);
+  else if(status === RequestStatus.COMPLETE) {
+    dispatch(setStatus(RequestStatus.IDLE));
+    onNavigate(RootScreens.LOGIN);
+  }
+
+  const handleSignUp = () => {
+    const data = {
+      userName: username,
+      "emailAddress": `${username}@example.com`,
+      "password": password,
+      "appName": "QRevealProximity"
+    }
+    dispatch(registerAsync(data));
+  };
 
   return (
     <View style={[styles.login, styles.loginShadowBox]}>
@@ -37,6 +64,8 @@ const SignUp = ({ onNavigate }) => {
           <TextInput 
 		  	    style={[styles.inputField]}
 			      placeholder={'Email address'}
+            onChangeText={(text) => setUsername(text)}
+            value={username}
 		      >
           </TextInput>
         </View>
@@ -53,6 +82,8 @@ const SignUp = ({ onNavigate }) => {
           <TextInput 
 		  	    style={[styles.inputField]}
 			      placeholder={'Password'}
+            onChangeText={(text) => setPassword(text)}
+            value={password}
 		      >
 			    </TextInput>
           <Image
@@ -92,7 +123,7 @@ const SignUp = ({ onNavigate }) => {
         </Text>
       </View>
 
-      <Pressable>
+      <Pressable onPress={handleSignUp}>
         <View style={{width: windowWidth*0.7, height: windowHeight*0.08, backgroundColor: '#3F88EB',
           display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 10,
           marginTop: windowHeight*0.05, alignSelf: 'center'

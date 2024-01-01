@@ -14,10 +14,7 @@ export const fetchUserProfile = createAsyncThunk('user/fetUserProfile', async (_
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    userName: '',
-    name: '',
-    email: '',
-    surname: '',
+    profile: {},
     requestStatus: RequestStatus.IDLE,
     error: null
   },
@@ -29,10 +26,7 @@ const userSlice = createSlice({
         state.requestStatus = RequestStatus.LOADING;
       })
       .addCase(fetchUserProfile.fulfilled, (state, action) => {
-        state.userName = action.payload.userName;
-        state.name = action.payload.name;
-        state.email = action.payload.email;
-        state.surname = action.payload.surname;
+        state.profile = action.payload;
         state.requestStatus = RequestStatus.COMPLETE;
       })
       .addCase(fetchUserProfile.rejected, (state, action) => {

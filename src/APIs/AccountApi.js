@@ -37,6 +37,14 @@ export const Logout = () =>
     url: '/api/account/logout',
   }).then(({ data }) => data);
 
+export const Register = (data) => {
+  api({
+    method: 'POST',
+    url: '/api/account/register',
+    data: data,
+  }).then(({ data }) => data);
+}
+
 export const getTenant = tenantName =>
   api({
     method: 'GET',
