@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, StyleSheet, Text, View, Pressable } from "react-native";
+import { Image, StyleSheet, Text, View, Pressable, Dimensions } from "react-native";
 import { FontFamily, Padding, Border, Color } from "../GlobalStyles";
 import { RootScreens } from "..";
 import { i18n, LocalizationKey } from "@/Localization";
@@ -19,20 +19,22 @@ export const Onboarding2 = (props: {
   }
 
   return (
-    <View style={[styles.onboarding2, styles.button1ShadowBox]}>
+    <View style={[styles.onboarding2]}>
       <Image
         style={styles.undrawMyCurrentLocationReIcon}
         resizeMode="cover"
         source={require("@/Assets/img/unlock.png")}
       />
+
       <View style={styles.titleParent}>
-        <Text style={[styles.title, styles.textFlexBox]}>
+        <Text style={[styles.title]}>
           Unlock Location Insights
         </Text>
-        <Text style={[styles.text, styles.textFlexBox]}>
+        <Text style={[styles.text]}>
           Obtain information by scanning
         </Text>
       </View>
+
       <View style={styles.actions}>
         <Pressable style={styles.buttonFlexBox} onPress={() => props.onNavigate(RootScreens.LOGIN)}>
           <Text style={[styles.skip, styles.skipTypo]}>Skip</Text>
@@ -47,7 +49,8 @@ export const Onboarding2 = (props: {
     </View>
   );
 };
-
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height; 
 const styles = StyleSheet.create({
   button1ShadowBox: {
     shadowOpacity: 1,
@@ -55,11 +58,6 @@ const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
-  },
-  textFlexBox: {
-    textAlign: "center",
-    letterSpacing: 0,
-    position: "absolute",
   },
   skipTypo: {
     fontFamily: 'PoppinsBold',
@@ -71,58 +69,39 @@ const styles = StyleSheet.create({
     padding: Padding.p_3xs,
     justifyContent: "center",
     alignItems: "center",
-    width: 149,
+    width: windowWidth/3,
     borderRadius: Border.br_3xs,
     flexDirection: "row",
     height: 54,
   },
-  onboarding2Child: {
-    top: 1,
-    left: 537,
-    width: 414,
-    height: 895,
-    position: "absolute",
-  },
   undrawMyCurrentLocationReIcon: {
-    marginLeft: -177,
-    top: 130,
-    width: 355,
-    height: 319,
-    left: "50%",
-    position: "absolute",
+    marginTop: 80,
+    width: windowWidth-100,
   },
   title: {
-    // height: "44.79%",
-    top: "0%",
-    left: "0%",
-    fontSize: 28,
-    fontWeight: "600",
-    fontFamily: 'PoppinsSemiBold',
+    fontSize: windowWidth < 300 ? 24 : 28,
+    lineHeight: 42,
+    fontFamily: 'PoppinsBold',
     color: "#1a1a1a",
-    width: "100%",
+    width: windowWidth,
+    textAlign: 'center',
   },
   text: {
-    height: "55.5%",
-    width: "100%",
-    top: "110%",
-    // left: "7.12%",
-    fontSize: 17,
-    lineHeight: 23,
+    height: '100%',
+    marginTop: 17,
+    width: windowWidth,
+    textAlign: 'center',
+    fontSize: windowWidth < 300 ? 15 : 17,
+    lineHeight: 25,
     fontWeight: "500",
     fontFamily: 'PoppinsThin',
     color: "#808080",
   },
   titleParent: {
-    height: "10.71%",
-    width: "100%",
-    top: "54.13%",
-    // right: "8.33%",
-    bottom: "35.16%",
-    // left: "8.57%",    
+    // height: "100%",
+    width: windowWidth,
     display: 'flex',
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
+    alignItems: 'center',
   },
   skip: {
     fontSize: 15,
@@ -145,33 +124,25 @@ const styles = StyleSheet.create({
     },
   },
   actions: {
-    marginLeft: -163,
-    top: 668,
-    width: 327,
+    top: windowHeight - 150,
+    width: windowWidth,
     flexDirection: "row",
     height: 54,
-    left: "50%",
+    display: "flex",
+    justifyContent: 'center',
     position: "absolute",
-  },
-  statusBarLight: {
-    top: 10,
-    right: -21,
-    left: 13,
-    maxWidth: "100%",
-    height: 42,
-    position: "absolute",
-    overflow: "hidden",
   },
   onboarding2: {
-    // borderRadius: 40,
     backgroundColor: Color.white,
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowRadius: 23,
     elevation: 23,
     flex: 1,
-    height: 896,
+    width: windowWidth,
+    height: windowHeight,
+    display: "flex",
+    alignItems: "center",
     overflow: "hidden",
-    width: "100%",
   },
 });
 

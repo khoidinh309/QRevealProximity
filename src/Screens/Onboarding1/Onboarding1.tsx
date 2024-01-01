@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View, Pressable } from "react-native";
+import { Image, StyleSheet, Text, View, Pressable, Dimensions } from "react-native";
 import { FontFamily, Padding, Border, Color } from "../GlobalStyles";
 import { RootScreens } from "..";
 import { i18n, LocalizationKey } from "@/Localization";
@@ -15,6 +15,8 @@ export const Onboarding1 = (props: {
   if (!fontsLoaded) {
     return null;
   }
+
+
 
     return (
     <View style={[styles.onboarding1, styles.button1ShadowBox]}>
@@ -50,7 +52,8 @@ export const Onboarding1 = (props: {
     </View>
   );
 };
-
+  const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height; 
 const styles = StyleSheet.create({
   button1ShadowBox: {
     shadowOpacity: 1,
@@ -67,65 +70,43 @@ const styles = StyleSheet.create({
   },
   buttonLayout: {
     padding: Padding.p_3xs,
-    width: 149,
+    width: windowWidth/3,
     borderRadius: Border.br_3xs,
     flexDirection: "row",
     height: 54,
     justifyContent: "center",
     alignItems: "center",
   },
-  onboarding1Child: {
-    top: 1,
-    left: 537,
-    width: 414,
-    height: 895,
-    position: "absolute",
-  },
   image2Icon: {
-    marginLeft: -178,
-    top: 110,
-    width: 355,
-    height: 319,
-    left: "50%",
-    position: "absolute",
+    marginTop: 80,
+    width: windowWidth,
   },
   welcomeToQreveal: {
-    fontSize: 28,
+    fontSize: windowWidth < 300 ? 24 : 28,
     letterSpacing: -0.3,
     lineHeight: 42,
     fontWeight: "600",
     fontFamily: 'PoppinsBold',
     color: "#1a1a1a",
     textAlign: "center",
+    width: windowWidth,
   },
   simplifyScanDiscover: {
-    fontSize: 17,
+    fontSize: windowWidth < 300 ? 15 : 17,
     lineHeight: 25,
     fontFamily: 'PoppinsThin',
     color: "#808080",
-    width: '100%',
+    width: windowWidth,
     marginTop: 8,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     textAlign: "center",
   },
   textBlock: {
-    // marginLeft: -145,
-    top: 445,
-    width: '100%',
+    marginTop: 36,
+    width: windowWidth,
     display: 'flex',
     justifyContent: "center",
     alignItems: "center",
-    // left: "50%",
-    position: "absolute",
-  },
-  statusBarLight: {
-    top: 10,
-    right: -21,
-    left: 13,
-    maxWidth: "100%",
-    height: 42,
-    position: "absolute",
-    overflow: "hidden",
   },
   skip: {
     fontSize: 15,
@@ -148,23 +129,24 @@ const styles = StyleSheet.create({
     },
   },
   actions: {
-    marginLeft: -164,
-    top: 676,
-    width: 327,
+    width: windowWidth,
     flexDirection: "row",
-    height: 54,
-    left: "50%",
+    height: '100%',
+    display: "flex",
+    justifyContent: 'center',
     position: "absolute",
+    top: windowHeight - 150,
   },
   onboarding1: {
-    // borderRadius: 40,
     backgroundColor: Color.white,
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowRadius: 23,
     elevation: 23,
     flex: 1,
-    width: "100%",
-    height: 896,
+    width: windowWidth,
+    height: windowHeight ,
+    display: 'flex',
+    alignItems: 'center',
     overflow: "hidden",
   },
 });

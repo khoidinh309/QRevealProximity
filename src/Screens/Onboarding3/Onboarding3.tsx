@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image, StyleSheet, Text, View, Pressable } from "react-native";
+import { Image, StyleSheet, Text, View, Pressable, Dimensions } from "react-native";
 import { FontFamily, Color } from "../GlobalStyles";
 import { RootScreens } from "..";
 import { i18n, LocalizationKey } from "@/Localization";
@@ -32,6 +32,7 @@ const Onboarding3 = (props: {
           Explore more easy together with QR code
         </Text>
       </View>
+
       <Pressable
         style={[styles.button, styles.buttonFlexBox]}
         onPress={() => props.onNavigate(RootScreens.LOGIN)}
@@ -42,54 +43,45 @@ const Onboarding3 = (props: {
   );
 };
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height; 
 const styles = StyleSheet.create({
   buttonFlexBox: {
     display: 'flex',
     justifyContent: "center",
     alignItems: "center",
-    left: "50%",
-    position: "absolute",
   },
   textFlexBox: {
     textAlign: "center",
     letterSpacing: 0,
   },
-  onboarding3Child: {
-    top: 1,
-    left: 537,
-    width: 414,
-    height: 895,
-    position: "absolute",
-  },
   image1Icon: {
-    marginLeft: -177,
-    top: 130,
-    width: 355,
-    height: 319,
-    left: "50%",
-    position: "absolute",
+    width: windowWidth - 100,
+    marginTop: 80,
   },
   title: {
-    fontSize: 28,
-    fontWeight: "600",
-    fontFamily: 'PoppinsSemiBold',
+    fontSize: windowWidth < 300 ? 24 : 28,
+    fontFamily: 'PoppinsBold',
+    lineHeight: 42,
     color: "#1a1a1a",
-    width: 400,
-    height: 50,
+    width: windowWidth,
+    eight: '100%',
   },
   text: {
-    fontSize: 17,
+    fontSize: windowWidth < 300 ? 15 : 17,
     lineHeight: 23,
     fontFamily: 'PoppinsThin',
     color: Color.grey,
-    width: 356,
-    height: 40,
-    marginTop: 19,
+    width: windowWidth,
+    height: '100%',
+    marginTop: 10,
+    paddingHorizontal: 10,
   },
   titleText: {
-    marginLeft: -179,
-    top: 485,
-    width: 359,
+    // marginLeft: -179,
+    // top: 485,
+    width: windowWidth,
+    marginTop: 36,
   },
   getStarted: {
     fontSize: 21,
@@ -102,24 +94,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   button: {
-    marginLeft: -104,
-    top: 665,
+    // marginLeft: -104,
+    top: windowHeight - 150,
     borderRadius: 10,
     backgroundColor: "#dd6140",
-    width: 208,
+    width: windowWidth/2,
     height: 58,
-    flexDirection: "row",    
-    paddingHorizontal: 28,
-    paddingVertical: 15,
-  },
-  statusBarLight: {
-    top: 10,
-    right: -21,
-    left: 13,
-    maxWidth: "100%",
-    height: 42,
-    position: "absolute",
-    overflow: "hidden",
+    position: 'absolute',
+    // flexDirection: "row",    
+    // paddingHorizontal: 28,
+    // paddingVertical: 15,
   },
   onboarding3: {
     // borderRadius: 40,
@@ -133,8 +117,11 @@ const styles = StyleSheet.create({
     elevation: 23,
     shadowOpacity: 1,
     flex: 1,
-    width: "100%",
-    height: 896,
+    width: windowWidth,
+    height: windowHeight,
+    display: 'flex',
+    alignItems: 'center',
+    // justifyContent: 'center',
     overflow: "hidden",
   },
 });
