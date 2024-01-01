@@ -10,7 +10,7 @@ import { Avatar, TextInput, Button, Text } from "react-native-paper";
 import DropDown from "react-native-paper-dropdown";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector, useDispatch, } from 'react-redux';
-import { HomeScreens } from "..";
+import { HomeScreens, ProfileScreens } from "..";
 import { RootScreens } from "..";
 import AppText from '../../Components/AppText';
 import { saveLang } from '../../redux/actions/saveLang';
@@ -226,7 +226,7 @@ const _onCheckVn = (itemmm: any) => {
       <Text style={{textAlign:"left", width:width,padding:10,fontSize:20,fontWeight:"800"}}> Manager
         {/* {i18n.t(LocalizationKey.PROFILEINFOR)} */}
       </Text>
-        <TouchableOpacity onPress={() => navigation.navigate(HomeScreens.PROFILE)}
+        <TouchableOpacity onPress={() => navigation.navigate(ProfileScreens.PROFILE)}
             style={[styles.styleItem, { backgroundColor: '#FFFFFF', borderColor: '#EFEFEF' }]}>
               <Text allowFontScaling={false} style={[styles.styleText,  { color: '#002336' }]}>Profile Information</Text>
               <View style={{ marginHorizontal: width * 0.02, width: '10%', height: '100%', alignItems: 'center', justifyContent: 'center' }}>
