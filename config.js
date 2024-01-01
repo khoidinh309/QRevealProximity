@@ -1,8 +1,7 @@
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import 'firebase/compat/auth';
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDHKzjyf-SZVYAJUeXAWtyREVy_RyYfr_s",
   authDomain: "qrevealproximity-c1b41.firebaseapp.com",
   projectId: "qrevealproximity-c1b41",
@@ -12,8 +11,3 @@ const firebaseConfig = {
   measurementId: "G-F9S072WRXF"
 };
 
-if(!firebase.app.length) {
-  firebase.initializeApp(firebaseConfig);
-}
-
-export {firebase};

@@ -12,6 +12,7 @@ export const fetchLocationInformation = createAsyncThunk(
       description: description
     }
     const response = await api.post('/api/Location/GetLocationInfo', data);
+    console.log(response.data);
     return response.data;
   }
 );
@@ -23,7 +24,8 @@ const locationSlice = createSlice({
     location: {
       name: '',
       address: '',
-      description: ''
+      description: '',
+      folderName: ''
     },
     status: RequestStatus.IDLE,
     error: null
@@ -39,6 +41,7 @@ const locationSlice = createSlice({
         state.location.name = action.payload.name;
         state.location.address = action.payload.address;
         state.location.description = action.payload.description;
+        state.location.folderName = action.payload.imageFileName;
         state.status = RequestStatus.COMPLETE;
       })
       .addCase(fetchLocationInformation.rejected, (state, action) => {

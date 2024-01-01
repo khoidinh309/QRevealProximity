@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native";
 import LocationIcon from '../../../assets/location.svg';
 import QrIcon from '../../../assets/qr_icon.svg'
 import { HomeScreens } from "..";
+import HeaderImage from "@/Components/headerImage";
 
 export const LocationDetails = () => {
   const [windowWidth, setWindowWidth] = useState(Dimensions.get('window').width);
@@ -34,11 +35,12 @@ export const LocationDetails = () => {
           fontSize: 24, color: '#fff', fontFamily: 'Poppins_400Regular', marginTop: 10}}>
           Thông tin
         </Text>
-        <Image source={require('../../../assets/h6-hcmut.jpg')}
+        {/* <Image source={require('../../../assets/h6-hcmut.jpg')}
           style={{width: windowWidth, height: 0.3*windowHeight, 
           position: 'absolute', top: 0
           }}
-        />
+        /> */}
+        <HeaderImage folderName={locationDetails.folderName} />
       </View>
       <View style={{marginTop: 20, marginLeft: 20}}>
         <Text style={{fontFamily: 'Poppins_400Regular', color: '#3F88EB', position: 'relative', fontSize: 24}}>
