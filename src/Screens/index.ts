@@ -21,3 +21,8 @@ export enum HistoryScreens {
   HISTORY = 'History',
   HISTORY_PAGE = 'History_Page',
 }
+
+export enum ProfileScreens {
+  PROFILE = 'Profile',
+  LISTINFORMATION = 'List_Information'
+}
