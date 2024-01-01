@@ -12,7 +12,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import { homeReducers, themeReducers,  userReducer, authReducer, locationReducer} from "./reducers";
+import { homeReducers, themeReducers,  userReducer, authReducer, locationReducer, historyReducer} from "./reducers";
 
 const reducers = combineReducers({
   api: API.reducer,
@@ -20,7 +20,8 @@ const reducers = combineReducers({
   home: homeReducers,
   user: userReducer,
   auth: authReducer,
-  location: locationReducer
+  location: locationReducer,
+  history: historyReducer
 });
 
 const persistConfig = {
