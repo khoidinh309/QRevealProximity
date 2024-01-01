@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Expo Redux Template",
-    "slug": "expo-redux-template",
+    "name": "QReveal Proximity App",
+    "slug": "qrevealproximity",
     "version": "1.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -34,12 +34,14 @@
     },
     "plugins": [],
     "extra": {
+      "owner": "group_9",
       "eas": {
         "projectId": "cb963bcc-e6c1-4e47-b3d7-cb8b32531644"
       }
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
-    }
+    },
+    "owner": "group_9"
   }
 }

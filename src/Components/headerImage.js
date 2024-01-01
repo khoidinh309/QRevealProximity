@@ -26,7 +26,6 @@ const HeaderImage = ({ folderName }) => {
           setLoading(false);
         });
       });
-      console.log(images)
     }
   }, [folderName]);
 
