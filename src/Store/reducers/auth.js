@@ -7,13 +7,10 @@ import api from '../../APIs/API';
 export const loginAsync = createAsyncThunk(
   'auth/login',
   async ({ username, password }, { getState }) => {
-    try {
+    
       const response = await login({ username, password });
       api.defaults.headers.common['Authorization'] = `Bearer ${response.access_token}`;
       return response;
-    } catch (error) {
-      console.log(error)
-    }
   }
 );
 
@@ -22,7 +19,7 @@ export const logoutAsync = createAsyncThunk(
   async (_, {getState}) => {
     try {
       getState().auth.accessToken = null;
-      return response;
+      return true;
     } catch (error) {
       console.log(error)
     }

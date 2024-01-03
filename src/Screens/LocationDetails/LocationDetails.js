@@ -41,7 +41,7 @@ export const LocationDetails = () => {
           position: 'absolute', top: 0
           }}
         /> */}
-        <HeaderImageCarousel folderName={locationDetails.folderName} />
+        <HeaderImage folderName={locationDetails.folderName} />
       </View>
       <View style={{marginTop: 20, marginLeft: 20}}>
         <Text style={{fontFamily: 'Poppins_400Regular', color: '#3F88EB', position: 'relative', fontSize: 24}}>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Dimensions, Image, Pressable } from "react-native";
+import { View, Text, StyleSheet, Dimensions, Image, Pressable, Button } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { useFonts } from 'expo-font';
 import { Poppins_400Regular, Poppins_600SemiBold } from '@expo-google-fonts/poppins';
@@ -8,7 +8,8 @@ import qrCodeHeader from "../../../assets/qr_code_header.svg"
 import QrIcon from '../../../assets/qr_icon.svg'
 import { useNavigation } from "@react-navigation/native";
 import { HomeScreens } from "..";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutAsync } from "@/Store/reducers";
 
 export interface IHomeProps {
   data: User | undefined;
@@ -20,6 +21,7 @@ export const Home = () => {
   const [windowHeight, setWindowHeight] = useState(Dimensions.get('window').height);
   const navigation = useNavigation();
   const userSurname = useSelector((state: any) => state.user.profile.surname);
+  const dispatch = useDispatch();
 
   const [fontsLoaded, fontError] = useFonts({
     Poppins_400Regular, Poppins_600SemiBold
@@ -78,9 +80,19 @@ export const Home = () => {
             />
           </View>
         </View>
-        <View style={{marginLeft: 10, display: 'flex',justifyContent: 'center'}}>
-          <Text style={{fontSize: 20, fontFamily: 'Poppins_600SemiBold', padding: 0, margin: 0}}>Welcome</Text>
-          <Text style={{fontSize: 16, fontFamily: 'Poppins_400Regular', padding: 0, margin: 0}}>{userSurname}</Text>
+        <View style={{marginLeft: 10, display: 'flex',justifyContent: 'space-between', alignItems:'center'
+        , flexDirection: 'row', flex: 1}}>
+          <View>
+            <Text style={{fontSize: 20, fontFamily: 'Poppins_600SemiBold', padding: 0, margin: 0}}>
+              Welcome
+            </Text>
+            <Text style={{fontSize: 16, fontFamily: 'Poppins_400Regular', padding: 0, margin: 0}}>
+              {userSurname}
+            </Text>
+          </View>
+          <View style={{marginEnd: 10}}>
+            <Button title="Đăng xuất" onPress={() => dispatch(logoutAsync())} />
+          </View>
         </View>
       </View>
       <View style={{marginTop: 20, height: windowHeight*0.3, 

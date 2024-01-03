@@ -7,6 +7,7 @@ import { FontFamily, Border, FontSize, Color } from "../GlobalStyles";
 import { loginAsync } from "@/Store/reducers/auth";
 import RequestStatus from "@/Store/reducers/requestStatus";
 import Spinner from "@/Components/spinner";
+import ErrorModal from "@/Components/errorModal";
 
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
@@ -17,6 +18,7 @@ const Login = ({ onNavigate }) => {
   const dispatch = useDispatch();
   const authStatus = useSelector((state) => state.auth.status);
   const authError = useSelector((state) => state.auth.error);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const [fontsLoaded] = useFonts({
     'PoppinsBold': require('@/Assets/font/poppins/Poppins-Bold.ttf'),
@@ -41,22 +43,14 @@ const Login = ({ onNavigate }) => {
       </View>
     )
   }
-  else if(authStatus === RequestStatus.ERROR) {
-    return (
-      <View style={[styles.login]}>
-        <View style={{height: windowHeight*0.2, display: 'flex', justifyContent: 'center',
-          alignItems: 'center', width: windowWidth
-        }}>
-          <Text style={[styles.loginTypo]}>Login</Text>
-        </View>
-        <View style={{height: windowHeight*0.4, display: 'flex', justifyContent: 'center',
-          alignItems: 'center', width: windowWidth
-        }}>
-          <Text style={[styles.loginTypo]}>Error: {authError}</Text>
-        </View>
-      </View>
-    )
-  }
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
   
   return (
     <View style={[styles.login, styles.loginShadowBox]}>
@@ -146,7 +140,8 @@ const Login = ({ onNavigate }) => {
         <Text style={{fontFamily: 'PoppinsReg', color: '#808080', alignSelf: 'center', marginEnd: windowWidth*0.02}}>Not resigtered?</Text>
         <Text style={{fontFamily: 'PoppinsSemiBold', color: '#DD6140', alignSelf: 'center'}} onPress={() => onNavigate(RootScreens.SIGNUP)}>Sign up now</Text>
       </View>
-
+      {authStatus === RequestStatus.ERROR && <ErrorModal visible={modalVisible} message={authError} onClose={closeModal} />}
+        
     </View>
   );
 };

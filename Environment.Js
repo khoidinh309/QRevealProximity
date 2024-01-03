@@ -1,6 +1,6 @@
-const yourIP = '192.168.137.1'; // See the docs https://docs.abp.io/en/abp/latest/Getting-Started-React-Native?Tiered=No
+const yourIP = 'qreveal-proximity.azurewebsites.net'; // See the docs https://docs.abp.io/en/abp/latest/Getting-Started-React-Native?Tiered=No
 const port  = 4200;
-const apiUrl = `http://${yourIP}:${port}`;
+const apiUrl = `https://${yourIP}`;
 const ENV = {
   dev: {
     apiUrl: apiUrl,
@@ -14,9 +14,9 @@ const ENV = {
     },
   },
   prod: {
-    apiUrl: 'http://192.168.137.1:4200',
+    apiUrl: 'https://qreveal-proximity.azurewebsites.net/',
     oAuthConfig: {
-      issuer: 'http://192.168.137.1:4200',
+      issuer: 'https://qreveal-proximity.azurewebsites.net/',
       clientId: 'QRevealProximity_App',
       scope: 'offline_access QRevealProximity',
     },
